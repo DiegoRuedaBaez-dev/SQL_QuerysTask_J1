@@ -158,67 +158,67 @@ FROM producto as prod
 WHERE prod.codigo_fabricante IN (1, 3, 5)
 ```
 ### 29. Lista el nombre y el precio de los productos en céntimos (Habrá que multiplicar por 100 el valor del precio). Cree un alias para la columna que contiene el precio que se llame céntimos.
-```
+```SQL:
 ```
 ### 30. Lista los nombres de los fabricantes cuyo nombre empiece por la letra S.
-```
+```SQL:
 ```
 ### 31. Lista los nombres de los fabricantes cuyo nombre termine por la vocal e.
-```
+```SQL:
 ```
 ### 32. Lista los nombres de los fabricantes cuyo nombre contenga el carácter w.
-```
+```SQL:
 ```
 ### 33. Lista los nombres de los fabricantes cuyo nombre sea de 4 caracteres.
-```
+```SQL:
 ```
 ### 34. Devuelve una lista con el nombre de todos los productos que contienen la cadena Portátil en el nombre.
-```
+```SQL:
 ```
 ### 35. Devuelve una lista con el nombre de todos los productos que contienen la cadena Monitor en el nombre y tienen un precio inferior a 215 €.
-```
+```SQL:
 ```
 ### 36. Lista el nombre y el precio de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente).
-```
+```SQL:
 ```
 # Consultas Multitabla (Composiciòn Interna):
 
 ### 1. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos.
-```
+```SQL:
 ```
 ### 2. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos. Ordene el resultado por el nombre del fabricante, por orden alfabético.
-```
+```SQL:
 ```
 ### 3. Devuelve una lista con el identificador del producto, nombre del producto, identificador del fabricante y nombre del fabricante, de todos los productos de la base de datos.
-```
+```SQL:
 ```
 ### 4. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más barato.
-```
+```SQL:
 ```
 ### 5. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más caro.
-```
+```SQL:
 ```
 ### 6. Devuelve una lista de todos los productos del fabricante Lenovo.
-```
+```SQL:
 ```
 ### 7. Devuelve una lista de todos los productos del fabricante Crucial que tengan un precio mayor que 200€.
-```
+```SQL:
 ```
 ### 8. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Sin utilizar el operador IN.
-```
+```SQL:
 ```
 ### 9. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Utilizando el operador IN.
-```
+```SQL:
 ```
 ### 10. Devuelve un listado con el nombre y el precio de todos los productos de los fabricantes cuyo nombre termine por la vocal e.
-```
+```SQL:
 ```
 ### 11. Devuelve un listado con el nombre y el precio de todos los productos cuyo nombre de fabricante contenga el carácter w en su nombre.
-```
+```SQL:
 ```
 ### 12. Devuelve un listado con el nombre de producto, precio y nombre de fabricante, de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente)
-```
+```SQL:
 ```
 ### 13. Devuelve un listado con el identificador y el nombre de fabricante, solamente de aquellos fabricantes que tienen productos asociados en la base de datos.
-```
+```SQL:
 ```
