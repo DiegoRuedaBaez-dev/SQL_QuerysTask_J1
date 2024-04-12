@@ -1,8 +1,8 @@
 # Consultas sobre una tabla:
 ### 1. Lista el nombre de todos los productos que hay en la tabla producto.
 ```SQL:
- SELECT prod.nombre
- FROM producto as prod;
+SELECT prod.nombre
+FROM producto as prod;
 ```
 ### 2. Lista los nombres y los precios de todos los productos de la tabla producto.
 ```SQL:
@@ -159,66 +159,140 @@ WHERE prod.codigo_fabricante IN (1, 3, 5)
 ```
 ### 29. Lista el nombre y el precio de los productos en céntimos (Habrá que multiplicar por 100 el valor del precio). Cree un alias para la columna que contiene el precio que se llame céntimos.
 ```SQL:
+SELECT prod.nombre as 'Nombre Producto', prod.precio as 'Precio', prod.precio * 100 as 'Precio (Centimos)'
+FROM producto as prod;
 ```
 ### 30. Lista los nombres de los fabricantes cuyo nombre empiece por la letra S.
 ```SQL:
+SELECT fab.nombre as 'Nombre Fabricante'
+FROM fabricante as fab
+WHERE fab.nombre LIKE 'S%'
 ```
 ### 31. Lista los nombres de los fabricantes cuyo nombre termine por la vocal e.
 ```SQL:
+SELECT fab.nombre as 'Nombre Fabricante'
+FROM fabricante as fab
+WHERE fab.nombre LIKE '%E'
 ```
 ### 32. Lista los nombres de los fabricantes cuyo nombre contenga el carácter w.
 ```SQL:
+SELECT fab.nombre as 'Nombre Fabricante'
+FROM fabricante as fab
+WHERE fab.nombre LIKE '%W%'
 ```
 ### 33. Lista los nombres de los fabricantes cuyo nombre sea de 4 caracteres.
 ```SQL:
+SELECT fab.nombre as 'Nombre Fabricante'
+FROM fabricante as fab
+WHERE LENGHT(fab.nombre)>=4;
 ```
 ### 34. Devuelve una lista con el nombre de todos los productos que contienen la cadena Portátil en el nombre.
 ```SQL:
+SELECT prod.nombre as 'Nombre Producto', prod.precio as 'Precio'
+FROM producto as prod
+WHERE prod.nombre LIKE '%Portátil%';
 ```
 ### 35. Devuelve una lista con el nombre de todos los productos que contienen la cadena Monitor en el nombre y tienen un precio inferior a 215 €.
 ```SQL:
+SELECT prod.nombre as 'Nombre Producto', prod.precio as 'Precio'
+FROM producto as prod
+WHERE prod.nombre LIKE '%Monitor%' AND prod.precio < 215;
 ```
 ### 36. Lista el nombre y el precio de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente).
 ```SQL:
+SELECT prod.nombre as 'Nombre Producto',prod.precio as 'Precio'
+FROM producto as prod
+WHERE prod.precio >= 180
+ORDER BY prod.nombre DESC, prod.precio ASC
 ```
 # Consultas Multitabla (Composiciòn Interna):
 
 ### 1. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo;
 ```
 ### 2. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos. Ordene el resultado por el nombre del fabricante, por orden alfabético.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+ORDER BY fab.nombre ASC;
 ```
 ### 3. Devuelve una lista con el identificador del producto, nombre del producto, identificador del fabricante y nombre del fabricante, de todos los productos de la base de datos.
 ```SQL:
+SELECT prod.codigo as 'Indentificador Producto',prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio',fab.codigo as 'Identificador Fabricante', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo;
 ```
 ### 4. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más barato.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE prod.precio = (SELECT MIN(prod.precio) FROM producto);
 ```
 ### 5. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más caro.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE prod.precio = (SELECT MAX(prod.precio) FROM producto);
 ```
 ### 6. Devuelve una lista de todos los productos del fabricante Lenovo.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE fab.nombre LIKE '%Lenovo%';
 ```
 ### 7. Devuelve una lista de todos los productos del fabricante Crucial que tengan un precio mayor que 200€.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE fab.nombre LIKE '%Crucial%' AND prod.precio > 200;
 ```
 ### 8. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Sin utilizar el operador IN.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE fab.nombre LIKE '%Asus%' AND fab.nombre LIKE '%Hewlett-Packardy%' AND fab.nombre LIKE '%Seagate%';
 ```
 ### 9. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Utilizando el operador IN.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE fab.nombre IN ('Asus','Hewlett-Packardy','Seagate');
 ```
 ### 10. Devuelve un listado con el nombre y el precio de todos los productos de los fabricantes cuyo nombre termine por la vocal e.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE fab.nombre LIKE '%e';
 ```
 ### 11. Devuelve un listado con el nombre y el precio de todos los productos cuyo nombre de fabricante contenga el carácter w en su nombre.
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE fab.nombre LIKE '%w%';
 ```
 ### 12. Devuelve un listado con el nombre de producto, precio y nombre de fabricante, de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente)
 ```SQL:
+SELECT prod.nombre AS 'Nombre Producto', prod.precio AS 'Precio', fab.nombre AS 'Fabricante'
+FROM producto AS prod
+INNER JOIN fabricante AS fab ON prod.codigo_fabricante = fab.codigo
+WHERE prod.precio >= 180
+ORDER BY prod.nombre DESC AND prod.precio ASC;
 ```
 ### 13. Devuelve un listado con el identificador y el nombre de fabricante, solamente de aquellos fabricantes que tienen productos asociados en la base de datos.
 ```SQL:
+SELECT fab.codigo AS 'Identificador Fabricante', fab.nombre AS 'Nombre Fabricante'
+FROM fabricante AS fab
+INNER JOIN producto AS prod ON fab.codigo = prod.codigo_fabricante;
 ```
